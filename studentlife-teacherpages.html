@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSH US Resource Hub - Teacher Meetings</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header {
+            padding: 20px 0;
+            border-bottom: 2px solid #b20000;
+            margin-bottom: 30px;
+        }
+
+        h1 { color: #b20000; }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            text-align: left; /* Better for reading lists of names */
+        }
+
+        .category-card h2 {
+            color: #b20000;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            margin: 8px 0;
+            background-color: #b20000;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover { background-color: #8e0000; }
+
+        .email-text {
+            display: block;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 15px;
+        }
+
+        .email-text:hover { color: #b20000; }
+
+        .notice-banner {
+            background-color: #fff3cd;
+            padding: 10px;
+            border: 1px solid #ffeeba;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CSH US Resource Hub</h1>
+        <p>Upper School Teacher Booking Directory</p>
+    </header>
+
+    <div class="notice-banner">
+        <strong>Booking Tip:</strong> Please ensure you are signed into your school Google account to access appointment slots.
+    </div>
+
+    <div class="grid-container">
+        
+        <section class="category-card">
+            <h2>Humanities</h2>
+            
+            <strong>Teacher Name</strong>
+            <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1iFTh4f3NMJE2SOH11KYt7kOmFDj06BnduzdoIph6x4de2lOHHq9h85uCrU0B6Z6JjlHlBBFLG" target="_blank" class="btn">Book Appointment</a>
+            <a href="mailto:teacher@csh.org" class="email-text">teacher@csh.org</a>
+
+            <strong>Teacher Name</strong>
+            <a href="#" class="btn">Book Appointment</a>
+            <a href="mailto:teacher@csh.org" class="email-text">teacher@csh.org</a>
+        </section>
+
+        <section class="category-card">
+            <h2>STEM</h2>
+            
+            <strong>Teacher Name</strong>
+            <a href="#" class="btn">Book Appointment</a>
+            <a href="mailto:teacher@csh.org" class="email-text">teacher@csh.org</a>
+        </section>
+
+        <section class="category-card">
+            <h2>Arts & Electives</h2>
+            
+            <strong>Teacher Name</strong>
+            <a href="#" class="btn">Book Appointment</a>
+            <a href="mailto:teacher@csh.org" class="email-text">teacher@csh.org</a>
+        </section>
+
+    </div>
+
+    <footer>
+        <p><a href="index.html" style="color: #b20000;">← Back to Main Hub</a></p>
+    </footer>
+
+</body>
+</html>
