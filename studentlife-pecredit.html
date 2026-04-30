@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PE Credit Sheet - CSH US Resource Hub</title>
+    <style>
+        :root {
+            --primary-color: #b20000;
+            --primary-hover: #800000;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-light: #666666;
+            --border-color: #dddddd;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+        }
+
+        header p {
+            color: var(--text-light);
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+            margin-bottom: 24px;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.35rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 4px rgba(178, 0, 0, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 12px 0;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background-color: #555555;
+            margin-top: 6px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #333333;
+        }
+
+        .progress-meter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .progress-bar {
+            height: 12px;
+            background-color: #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 12px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .log-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        .log-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+        }
+
+        .log-item:last-child {
+            border-bottom: none;
+        }
+
+        .log-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .log-details strong {
+            color: var(--primary-color);
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .delete-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CSH US Resource Hub</h1>
+        <p>Physical Education Credit Sheet</p>
+    </header>
+
+    <div class="container">
+        <section class="card">
+            <h2>Credit Progress Tracker</h2>
+            <div class="progress-meter">
+                <span>Current PE Hours: <span id="currentHours">0</span> / 120 Hours</span>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Log New Activity</h2>
+            <form id="peForm">
+                <div class="form-group">
+                    <label for="activityName">Activity / Sport Name:</label>
+                    <input type="text" id="activityName" placeholder="e.g., Varsity Basketball, Morning Run" required>
+                </div>
+                <div class="form-group">
+                    <label for="activityDate">Date:</label>
+                    <input type="date" id="activityDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="activityHours">Duration (in hours):</label>
+                    <input type="number" id="activityHours" step="0.5" min="0.5" placeholder="e.g., 1.5" required>
+                </div>
+                <div class="form-group">
+                    <label for="activityNotes">Coach/Instructor Name & Notes:</label>
+                    <textarea id="activityNotes" rows="2" placeholder="Optional: Add notes or verification details..."></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Activity Log</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>Recent Activities</h2>
+            <ul id="logList" class="log-list">
+                </ul>
+            <button id="clearBtn" class="btn btn-secondary" style="display: none;">Clear All Logs</button>
+        </section>
+
+        <a href="index.html" class="back-link">← Return to Main Resource Hub</a>
+    </div>
+
+    <script>
+        let peActivities = JSON.parse(localStorage.getItem('peLogs')) || [];
+        const requiredHours = 120; // Default PE hour requirement
+
+        function updateDisplay() {
+            const logList = document.getElementById('logList');
+            const clearBtn = document.getElementById('clearBtn');
+            logList.innerHTML = '';
+            
+            let totalHours = 0;
+
+            if (peActivities.length === 0) {
+                logList.innerHTML = '<p style="color: var(--text-light); text-align: center;">No activities logged yet.</p>';
+                clearBtn.style.display = 'none';
+            } else {
+                clearBtn.style.display = 'block';
+            }
+
+            peActivities.forEach((activity, index) => {
+                totalHours += parseFloat(activity.hours);
+
+                const li = document.createElement('li');
+                li.className = 'log-item';
+                li.innerHTML = `
+                    <div class="log-details">
+                        <strong>${activity.name}</strong>
+                        <small>${activity.date} — ${activity.hours} hours | ${activity.notes || 'No notes'}</small>
+                    </div>
+                    <button class="delete-btn" onclick="deleteActivity(${index})">&times;</button>
+                `;
+                logList.appendChild(li);
+            });
+
+            // Update Progress Percentage Bar
+            document.getElementById('currentHours').innerText = totalHours;
+            let percentage = Math.min((totalHours / requiredHours) * 100, 100);
+            document.getElementById('progressPercent').innerText = `${Math.round(percentage)}%`;
+            document.getElementById('progressFill').style.width = `${percentage}%`;
+        }
+
+        document.getElementById('peForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('activityName').value;
+            const date = document.getElementById('activityDate').value;
+            const hours = document.getElementById('activityHours').value;
+            const notes = document.getElementById('activityNotes').value;
+
+            const newActivity = { name, date, hours, notes };
+            peActivities.push(newActivity);
+            
+            localStorage.setItem('peLogs', JSON.stringify(peActivities));
+            updateDisplay();
+            
+            this.reset();
+        });
+
+        function deleteActivity(index) {
+            peActivities.splice(index, 1);
+            localStorage.setItem('peLogs', JSON.stringify(peActivities));
+            updateDisplay();
+        }
+
+        document.getElementById('clearBtn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to clear your entire activity log?')) {
+                peActivities = [];
+                localStorage.setItem('peLogs', JSON.stringify(peActivities));
+                updateDisplay();
+            }
+        });
+
+        // Initialize display on load
+        updateDisplay();
+    </script>
+
+</body>
+</html>
